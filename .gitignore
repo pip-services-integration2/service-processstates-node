@@ -1,0 +1,11 @@
+/node_modules
+/npm-debug.log
+/.idea
+/data/process_states.test.json
+/data/process_states.json
+/obj/test
+/package-lock.json
+/docker/id_rsa*
+/docker/.npmrc
+cross-table.txt
+*.cs
