@@ -61,7 +61,7 @@
     port: 8080
 
 # HTTP endpoint version 1.0
-- descriptor: "service-processstates:service:http:default:1.0"
+- descriptor: "service-processstates:service:commandable-http:default:1.0"
   swagger:
     enable: true
     auto: true

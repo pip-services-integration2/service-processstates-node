@@ -1,1 +1,1 @@
-export { ProcessStatesHttpServiceV1 } from './ProcessStatesHttpServiceV1';
+export { ProcessStatesCommandableHttpServiceV1 } from './ProcessStatesCommandableHttpServiceV1';

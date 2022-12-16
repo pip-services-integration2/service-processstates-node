@@ -8,7 +8,7 @@ import { References } from 'pip-services3-commons-nodex';
 import { ProcessStateV1 } from '../../../src/data/version1/ProcessStateV1';
 import { ProcessStatesMemoryPersistence } from '../../../src/persistence/ProcessStatesMemoryPersistence';
 import { ProcessStatesController } from '../../../src/logic/ProcessStatesController';
-import { ProcessStatesHttpServiceV1 } from '../../../src/services/version1/ProcessStatesHttpServiceV1';
+import { ProcessStatesCommandableHttpServiceV1 } from '../../../src/services/version1/ProcessStatesCommandableHttpServiceV1';
 import { MessageV1, ProcessStatusV1, TaskStateV1 } from '../../../src/data/version1';
 
 let httpConfig = ConfigParams.fromTuples(
@@ -52,8 +52,8 @@ const PROCESS3: ProcessStateV1 = <ProcessStateV1>{
     request_id: "req.id3"
 }
 
-suite('ProcessStatesHttpServiceV1', () => {
-    let service: ProcessStatesHttpServiceV1;
+suite('ProcessStatesCommandableHttpServiceV1', () => {
+    let service: ProcessStatesCommandableHttpServiceV1;
     let rest: any;
     let _message: MessageV1 = new MessageV1();
     let persistence: ProcessStatesMemoryPersistence;
@@ -62,13 +62,13 @@ suite('ProcessStatesHttpServiceV1', () => {
         persistence = new ProcessStatesMemoryPersistence();
         let controller = new ProcessStatesController();
 
-        service = new ProcessStatesHttpServiceV1();
+        service = new ProcessStatesCommandableHttpServiceV1();
         service.configure(httpConfig);
 
         let references: References = References.fromTuples(
             new Descriptor('service-processstates', 'persistence', 'memory', 'default', '1.0'), persistence,
             new Descriptor('service-processstates', 'controller', 'default', 'default', '1.0'), controller,
-            new Descriptor('service-processstates', 'service', 'http', 'default', '1.0'), service
+            new Descriptor('service-processstates', 'service', 'commandable-http', 'default', '1.0'), service
         );
         controller.setReferences(references);
         service.setReferences(references);

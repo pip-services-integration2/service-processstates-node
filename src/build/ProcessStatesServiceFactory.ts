@@ -5,7 +5,7 @@ import { ProcessStatesMongoDbPersistence } from '../persistence/ProcessStatesMon
 import { ProcessStatesFilePersistence } from '../persistence/ProcessStatesFilePersistence';
 import { ProcessStatesMemoryPersistence } from '../persistence/ProcessStatesMemoryPersistence';
 import { ProcessStatesController } from '../logic/ProcessStatesController';
-import { ProcessStatesHttpServiceV1 } from '../services/version1/ProcessStatesHttpServiceV1';
+import { ProcessStatesCommandableHttpServiceV1 } from '../services/version1/ProcessStatesCommandableHttpServiceV1';
 import { ProcessCloseExpiredProcessor } from '../logic/ProcessCloseExpiredProcessor';
 import { ProcessRecoveryProcessor } from '../logic/ProcessRecoveryProcessor';
 import { ProcessTruncateProcessor } from '../logic/ProcessTruncateProcessor';
@@ -16,7 +16,7 @@ export class ProcessStatesServiceFactory extends Factory {
 	public static FilePersistenceDescriptor = new Descriptor("service-processstates", "persistence", "file", "*", "1.0");
 	public static MongoDbPersistenceDescriptor = new Descriptor("service-processstates", "persistence", "mongodb", "*", "1.0");
 	public static ControllerDescriptor = new Descriptor("service-processstates", "controller", "default", "*", "1.0");
-	public static HttpServiceDescriptor = new Descriptor("service-processstates", "service", "http", "*", "1.0");
+	public static HttpServiceDescriptor = new Descriptor("service-processstates", "service", "commandable-http", "*", "1.0");
 
 	public static CloseExpiredProcessorDescriptor = new Descriptor("service-processstates", "processor", "expired", "*", "1.0");
 	public static RecoveryProcessorDescriptor = new Descriptor("service-processstates", "processor", "recovery", "*", "1.0");
@@ -28,7 +28,7 @@ export class ProcessStatesServiceFactory extends Factory {
 		this.registerAsType(ProcessStatesServiceFactory.FilePersistenceDescriptor, ProcessStatesFilePersistence);
 		this.registerAsType(ProcessStatesServiceFactory.MongoDbPersistenceDescriptor, ProcessStatesMongoDbPersistence);
 		this.registerAsType(ProcessStatesServiceFactory.ControllerDescriptor, ProcessStatesController);
-		this.registerAsType(ProcessStatesServiceFactory.HttpServiceDescriptor, ProcessStatesHttpServiceV1);
+		this.registerAsType(ProcessStatesServiceFactory.HttpServiceDescriptor, ProcessStatesCommandableHttpServiceV1);
 
 		this.registerAsType(ProcessStatesServiceFactory.CloseExpiredProcessorDescriptor, ProcessCloseExpiredProcessor);
 		this.registerAsType(ProcessStatesServiceFactory.RecoveryProcessorDescriptor, ProcessRecoveryProcessor);
